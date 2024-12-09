@@ -35,8 +35,7 @@ function StudentDetails() {
     const addNewMark = () => {
         console.log("Navigating with studentId:", id); // Log studentId to ensure it's correct
         navigate('/add-note', { state: { studentId: id } });
-        
-      };
+    };
 
     const goBack = () => {
         navigate('/students');
@@ -51,9 +50,9 @@ function StudentDetails() {
             <h2 className="text-center">Détails des notes</h2>
             <button className="btn btn-light mb-2" onClick={goBack}>🔙</button>
             <button className="btn btn-primary mb-2" onClick={addNewMark}>
-  Ajouter une note
-</button>
-            <table className="table table-striped table-bordered">
+                Ajouter une note
+            </button>
+            <table className="table  table-bordered">
                 <thead>
                     <tr>
                         <th>Nom du cours</th>
@@ -61,12 +60,17 @@ function StudentDetails() {
                     </tr>
                 </thead>
                 <tbody>
-                    {notes.map((note) => (
-                        <tr key={note.id}>
-                            <td>{note.nomDuCours}</td>
-                            <td>{note.valeurDeNote}</td>
-                        </tr>
-                    ))}
+                    {notes.map((note) => {
+                        const noteValue = parseFloat(note.valeurDeNote);
+                        // Vérifie si la note est supérieure à 10 pour appliquer la couleur verte, sinon rouge
+                        const rowClass = noteValue > 10 ? 'table-success' : 'table-danger';
+                        return (
+                            <tr key={note.id} className={rowClass}>
+                                <td>{note.nomDuCours}</td>
+                                <td>{note.valeurDeNote}</td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
             <h4>Note finale : {finalGrade}</h4>
