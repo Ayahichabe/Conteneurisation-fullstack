@@ -8,6 +8,7 @@ import{BrowserRouter,Routes , Route} from 'react-router-dom'
 import StudentDetails from './Components/StudentDetails'
 import NewNote from './Components/NewNote'
 
+
 function App() {
   
   return (
